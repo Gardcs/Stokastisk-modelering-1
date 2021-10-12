@@ -65,6 +65,10 @@ calculateCI <- function(){
   meanInfectedDays = mean(infectedDays)
   meanImmuneDays = mean(immuneDays)
   
+  print(meanSusceptibleDays)
+  print(meanInfectedDays)
+  print(meanImmuneDays)
+  
   #Calculate the standard deviation of all three samples. This is the corrected
   #sample standard deviation 
   sdSusceptibleDays = sd(susceptibleDays)
@@ -108,7 +112,12 @@ N = 1000 #number of people
 #the second row is number of infected people this day, and the last row is number of
 #immune people this day. The second input, is the number of vaccinated individuals.
 #If the input value returnY is false, the function returns a vector with 2 elements. 
-#The first is max number of infected, and the second is which day this happened.
+#
+#For each step, we can model new infected, new recovered and new susceptible people as
+#a binomial distribution. We have the number of people in each state at day i, and we also
+#know the probability that any of these will change state. For example, for new infected, we
+#have the numbers of susceptible people at day i as numbers of trials, and beta as probability
+#of success, where "success" is that a person becomes infected. We do it similarly for the other states. 
 explosiveBehaviour <- function(returnY, vaccinated){
   Y <- matrix(0, 3, n) #Create 3x300 matrix of zeros
   Y[,1] = c(950, 50, 0) #Set the first columns equal to Y_0
@@ -175,6 +184,11 @@ calculateCI_expectedValues <- function(maxInfected, dayMaxInfected){
   #Calculate the mean of bot input parameters
   meanMaxInfected = mean(maxInfected)
   meanDay = mean(dayMaxInfected)
+  
+  print("E[maxI]")
+  print(meanMaxInfected)
+  print("E[day]")
+  print(meanDay)
   
   #Calculate corrected standard deviation of both input parameters
   sdMaxInfected = sd(maxInfected)
