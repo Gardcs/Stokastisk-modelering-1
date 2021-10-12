@@ -1,5 +1,5 @@
 #Setting a seed to get the same pseudo random functiones each time
-set.seed(7)
+set.seed(13715)
 
 #Setting given values
 t <- 59
@@ -123,7 +123,7 @@ above8 <- function(t, lambda, gamma, n){
 plotMatrix <- function(mat, title, xlab, ylab){
   n = length(mat[1,])
   plot.new()
-  plot.window(xlim=c(0, 59), ylim=c(0, max(mat)+1))
+  plot.window(xlim=c(0, 59), ylim=c(0, max(mat)+(max(mat)/10)))
   axis(1)
   axis(2)
   box()
@@ -136,17 +136,17 @@ plotMatrix <- function(mat, title, xlab, ylab){
 }
 
 
-above100 <- checkAbove100(t, lambda, 1000)
+above100 <- checkAbove100(t, lambda, 10000)
 print(above100)
 
 above8 <- above8(t, lambda, gamma, 1000)
 print(above8)
 
 xMatrix <- XtMatrix(t, lambda, 10)
-plotMatrix(xMatrix, "X(t)", "Days", "Number of insurance claims")
+plotMatrix(xMatrix, "Insurance claims over a time period of 59 days", "Days", "Number of insurance claims")
 
 zMatrix <- ZtMatrix(t, lambda, gamma, 10)
-plotMatrix(zMatrix, "Z(t)", "Days", "Value of insurance claims in millions")
+plotMatrix(zMatrix, "Total value of insurance claims over a time period of 59 days", "Days", "Value of insurance claims in millions")
 
 
 
