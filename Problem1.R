@@ -1,6 +1,6 @@
 #Project 1
 
-set.seed(1) #Set a seed 
+set.seed(7) #Set a seed, our favorite number
 
 #1c)
 
@@ -158,6 +158,8 @@ plot(1:n, Y[1, ], col = "blue", type = "l", lwd = 2, main = "Simulation of a mea
 lines(1:n, Y[2, ], col = "red", lwd = 2)
 lines(1:n, Y[3, ], col = "green", lwd = 2)
 abline(v = 50)
+legend(x = 200, y = 600, legend=c("Susceptible", "Infected", "Recovered"), 
+       col = c("blue", "red", "green"), lty = 1)
 
 #Run the simulation of the measles outbreak 1000 times with 0 vaccinated individuals, 
 #store the number of max infected people for every simulation in the vector maxValsInfected0
@@ -198,21 +200,18 @@ calculateCI_expectedValues <- function(maxInfected, dayMaxInfected){
 }
 
 #Run the simulation of the measles outbreak again, with 100, 600 and 800
-#vaccinated people respectively. I then plot these in the same plot as for 
-#0 vaccinated. 
+#vaccinated people respectively. I then plot the number of infected people
+#per day, for all three cases and the case for 0 vaccinated
 Y_100 = explosiveBehaviour(TRUE, 100)
 Y_600 = explosiveBehaviour(TRUE, 600)
 Y_800 = explosiveBehaviour(TRUE, 800)
-lines(1:n, Y_100[1, ], col = "cyan", lwd = 2)
-lines(1:n, Y_100[2, ], col = "deeppink", lwd = 2)
-lines(1:n, Y_100[3, ], col = "aquamarine", lwd = 2)
-lines(1:n, Y_600[1, ], col = "purple", lwd = 2)
-lines(1:n, Y_600[2, ], col = "orange", lwd = 2)
-lines(1:n, Y_600[3, ], col = "yellow", lwd = 2)
-lines(1:n, Y_800[1, ], col = "azure3", lwd = 2)
-lines(1:n, Y_800[2, ], col = "coral", lwd = 2)
-lines(1:n, Y_800[3, ], col = "chartreuse", lwd = 2)
-legend(250, 800)
+plot(1:n, Y[2, ], col = "red", lwd = 2, type = "l", xlab = "Days", 
+     ylab = "Infected people", main = "Infected people in a 300 day simulation of a measles outbreak")
+lines(1:n, Y_100[2, ], col = "blue", lwd = 2)
+lines(1:n, Y_600[2, ], col = "green", lwd = 2)
+lines(1:n, Y_800[2, ], col = "orange", lwd = 2)
+legend(x = 200, y = 500, legend=c("0 vaccinated", "100 vaccinated", "600 vaccinated", "800 vaccinated"), 
+       col = c("red", "blue", "green", "orange"), lty = 1)
 
 #Run the simulation of the outbreak 1000 times for each of the cases where
 #the number of vaccinated people is 100, 600 and 800. Store the values in a
