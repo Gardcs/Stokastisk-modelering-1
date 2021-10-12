@@ -1,6 +1,6 @@
 #Project 1
 
-set.seed(7) #Set a seed, our favorite number
+set.seed(7) #Set a seed, our favorite number. So we get the same pseudo random numbers each run
 
 #1c)
 
@@ -25,8 +25,8 @@ MCSimulation <- function(){
     SIR_state[i+1] = sample(c(0, 1, 2), size = 1, prob = todayProb)
   }
   
-  #A vector of the states every year in the last 10 years, is the seconc half
-  # of the prevoiusly declared vector SIR_state
+  #A vector of the states every year in the last 10 years, is the second half
+  # of the previously declared vector SIR_state
   lastTenYears <-  SIR_state[(length(SIR_state)/2):days] 
   
   #For each run of this function, we estimate the number of days per year spent in each
