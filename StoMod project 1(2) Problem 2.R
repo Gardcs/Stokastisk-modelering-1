@@ -1,3 +1,6 @@
+#Setting a seed to get the same pseudo random functiones each time
+set.seed(7)
+
 #Setting given values
 t <- 59
 lambda <- 1.5
@@ -113,6 +116,10 @@ above8 <- function(t, lambda, gamma, n){
   return(above/n)
 }
 
+#plotMatrix(mat, title, xlab, ylab)
+#Takes a matrix with values in y-direction to plot and three strings(title, label for x axis and label for y axis).
+#The function creates a window and set parameters for size of window. Then it makes stair graphs for vectors in
+#the matrix(without vertical lines).
 plotMatrix <- function(mat, title, xlab, ylab){
   n = length(mat[1,])
   plot.new()
@@ -129,26 +136,18 @@ plotMatrix <- function(mat, title, xlab, ylab){
 }
 
 
-above100 <- checkAbove100(t, lambda, 10000)
+above100 <- checkAbove100(t, lambda, 1000)
 print(above100)
 
-above8 <- above8(t, lambda, gamma, 10000)
+above8 <- above8(t, lambda, gamma, 1000)
 print(above8)
 
 xMatrix <- XtMatrix(t, lambda, 10)
 plotMatrix(xMatrix, "X(t)", "Days", "Number of insurance claims")
 
 zMatrix <- ZtMatrix(t, lambda, gamma, 10)
-plotMatrix(zMatrix, "Z(t)", "Days", "Value of insurance claims")
+plotMatrix(zMatrix, "Z(t)", "Days", "Value of insurance claims in millions")
 
 
 
-#Non of the graphs in task 2 has a legend, this is becaous it is has noe point in a figure with ten graphs.
-
-
-
-
-
-
-
-
+#Non of the graphs in task 2 has a legend, this is because it's no point in a figure with ten graphs.
